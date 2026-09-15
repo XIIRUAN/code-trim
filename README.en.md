@@ -324,28 +324,28 @@ Website presentation should not change the skill's default rule against addition
 
 ## Frequently asked questions
 
-### Why provide detailed documentation for a lightweight workflow?
+### Q. Why provide detailed documentation for a lightweight workflow?
 
-The README helps people install and understand the skill; [SKILL.md](SKILL.md) guides execution.
+**A.** The README helps people install and understand the skill; [SKILL.md](SKILL.md) guides execution.
 Detailed documentation does not require rereading this file, scoring every guard, or producing a report on each run.
 
-### Does it automatically delete defensive code?
+### Q. Does it automatically delete defensive code?
 
-No. It requires a concrete understanding of requirements and failure modes before accepting simplifications.
+**A.** No. It requires a concrete understanding of requirements and failure modes before accepting simplifications.
 Necessary protections and candidates with insufficient evidence remain in place by default.
 
-### Does every run require ablation or new tests?
+### Q. Does every run require ablation or new tests?
 
-No. Ablation has complexity and evidence thresholds, and additional tests must address unresolved regression risks.
+**A.** No. Ablation has complexity and evidence thresholds, and additional tests must address unresolved regression risks.
 Otherwise, one quick inspection and normal validation are sufficient.
 
-### Which languages are supported, and how much does it save?
+### Q. Which languages are supported, and how much does it save?
 
-The rules are language-independent, but analysis depends on the host agent, project context, and available tools.
+**A.** The rules are language-independent, but analysis depends on the host agent, project context, and available tools.
 The repository publishes no language coverage matrix or quantified token, time, or line-count savings.
 
-### How can I report a problem?
+### Q. How can I report a problem?
 
-Open an [issue](https://github.com/XIIRUAN/code-trim/issues) with a minimal shareable example:
+**A.** Open an [issue](https://github.com/XIIRUAN/code-trim/issues) with a minimal shareable example:
 the requirement, changed scope, incorrect removal or unnecessary retention, and relevant validation evidence.
 Improvements should address observed failures while preserving the quick-review and on-demand-ablation boundaries.
