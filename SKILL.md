@@ -1,12 +1,12 @@
 ---
-name: coding-agent-lean-review
+name: code-trim
 description: >
   Perform a lightweight simplification pass after generating or modifying
   code. Remove redundant defenses and speculative abstractions while
   preserving required behavior. Use targeted ablation only when justified.
 ---
 
-# Lightweight Lean Review
+# Code Trim
 
 Prefer the smallest implementation that satisfies current requirements
 and protects concrete failure modes. Do not add defenses for hypothetical

@@ -1,4 +1,4 @@
-# 轻量代码精简 · Coding Agent Lean Review
+# Code Trim · 代码精简
 
 中文 | [English](README.en.md)
 
@@ -12,8 +12,8 @@
 
 | Skill / 工作方式 | 适用场景 | 主要输出 |
 | --- | --- | --- |
-| `coding-agent-lean-review` · 快速精简 | 新增或修改代码后，检查明显的冗余防御与抽象 | 有依据的代码精简，以及正常任务回复中的验证说明 |
-| `coding-agent-lean-review` · 按需消融 | 某个防御单元复杂度明显，必要性无法低成本判断 | 一次隔离实验；保留有证据的简化，恢复失败或不确定的改动 |
+| `code-trim` · 快速精简 | 新增或修改代码后，检查明显的冗余防御与抽象 | 有依据的代码精简，以及正常任务回复中的验证说明 |
+| `code-trim` · 按需消融 | 某个防御单元复杂度明显，必要性无法低成本判断 | 一次隔离实验；保留有证据的简化，恢复失败或不确定的改动 |
 
 两种方式无需分别安装。普通改动先做快速检查；只有复杂单元满足消融条件时才进入实验。
 如果没有明确候选，或证据不足且不值得继续验证，结束审查并保留当前实现。
@@ -35,7 +35,7 @@
 
 ```text
 当前任务的新增或修改代码
-  └─ coding-agent-lean-review
+  └─ code-trim
        ├─ 复用已有上下文、diff 与验证结果
        ├─ 一轮快速检查
        │    ├─ 重复校验与重叠保护
@@ -62,13 +62,13 @@
 
 - 根目录的 [SKILL.md](SKILL.md) 是唯一执行规则来源，保留英文指令。
 - 本页与 [README.en.md](README.en.md) 分别提供完整中文和英文使用说明。
-- 目录名和 Skill 名统一为 `coding-agent-lean-review`，便于发现与显式调用。
+- 目录名和 Skill 名统一为 `code-trim`，便于发现与显式调用。
 - README 中的教学示例用于解释规则，不代表每次使用都要逐项检查或生成表格。
 - 后续规则调整应同步更新两种语言的说明，尤其是预算、验证与停止条件。
 - 只有出现实际需要时才增加脚本、引用资料或其他资源。
 
 ```text
-coding-agent-lean-review/
+code-trim/
 ├── SKILL.md       # Agent 执行规则
 ├── README.md      # 完整中文说明
 └── README.en.md   # 完整英文说明
@@ -122,8 +122,8 @@ coding-agent-lean-review/
 ### 获取仓库
 
 ```bash
-git clone https://github.com/XIIRUAN/coding-agent-lean-review.git
-cd coding-agent-lean-review
+git clone https://github.com/XIIRUAN/code-trim.git
+cd code-trim
 ```
 
 Skill 本身没有运行时依赖。使用 Git 克隆需要本机已安装 Git；
@@ -138,8 +138,8 @@ macOS / Linux：
 
 ```bash
 mkdir -p "$HOME/.agents/skills"
-git clone https://github.com/XIIRUAN/coding-agent-lean-review.git \
-  "$HOME/.agents/skills/coding-agent-lean-review"
+git clone https://github.com/XIIRUAN/code-trim.git \
+  "$HOME/.agents/skills/code-trim"
 ```
 
 Windows PowerShell：
@@ -147,8 +147,8 @@ Windows PowerShell：
 ```powershell
 $skillRoot = Join-Path $HOME '.agents\skills'
 New-Item -ItemType Directory -Force -Path $skillRoot | Out-Null
-git clone https://github.com/XIIRUAN/coding-agent-lean-review.git `
-  (Join-Path $skillRoot 'coding-agent-lean-review')
+git clone https://github.com/XIIRUAN/code-trim.git `
+  (Join-Path $skillRoot 'code-trim')
 ```
 
 Codex 的用户级技能目录为 `~/.agents/skills/`，项目级技能可放入 `.agents/skills/`。
@@ -157,11 +157,11 @@ Codex 的用户级技能目录为 `~/.agents/skills/`，项目级技能可放入
 ### 项目级安装与其他宿主
 
 仅在一个项目中使用时，在目标项目根目录创建
-`.agents/skills/coding-agent-lean-review/`，把本仓库的 `SKILL.md` 复制进去。
+`.agents/skills/code-trim/`，把本仓库的 `SKILL.md` 复制进去。
 README 可一并复制供团队阅读；无需把本仓库的 `.git` 目录复制进去。
 
 其他宿主请使用其文档规定的发现目录与调用方式。
-无论放在哪个目录，最终应有 `coding-agent-lean-review/SKILL.md` 这一层级。
+无论放在哪个目录，最终应有 `code-trim/SKILL.md` 这一层级。
 
 ### 更新与发现检查
 
@@ -189,7 +189,7 @@ git pull --ff-only
 显式调用：
 
 ```text
-使用 $coding-agent-lean-review 检查本次任务的代码改动。
+使用 $code-trim 检查本次任务的代码改动。
 复用现有上下文和测试结果，只做一轮快速精简。
 没有明确候选就停止，把有意义的精简放进正常任务总结。
 ```
@@ -197,7 +197,7 @@ git pull --ff-only
 ### 对复杂防御单元做按需消融
 
 ```text
-使用 $coding-agent-lean-review 检查本次新增的重试包装层。
+使用 $code-trim 检查本次新增的重试包装层。
 先确定底层客户端是否已经覆盖相同的失败模式和错误契约。
 如果阅读不能低成本得出结论，且该包装层确实增加明显复杂度，
 在隔离的本地变体中对它做一次消融，运行覆盖重试行为的最小检查。
@@ -208,7 +208,7 @@ git pull --ff-only
 
 ```text
 修复当前解析错误，保留既有错误类型和对外接口。
-完成后使用 $coding-agent-lean-review 做一轮精简，
+完成后使用 $code-trim 做一轮精简，
 将接受的调整纳入本次修复的正常验证，并说明未能执行的检查。
 ```
 
@@ -238,7 +238,7 @@ git diff --cached --stat
 ### 3. 调用 Skill
 
 ```text
-使用 $coding-agent-lean-review。
+使用 $code-trim。
 范围是刚刚完成的解析器修改及回答具体问题所需的直接依赖。
 复用本轮已有验证，只为未解决的回归风险增加检查。
 ```
@@ -286,7 +286,7 @@ git diff --check
 
 ## GitHub Pages
 
-本项目的文档入口是 [GitHub 仓库](https://github.com/XIIRUAN/coding-agent-lean-review)。
+本项目的文档入口是 [GitHub 仓库](https://github.com/XIIRUAN/code-trim)。
 当前未配置 GitHub Pages 站点，也没有自动生成或发布审查报告的功能。
 
 | 内容 | 当前位置 / 行为 |
@@ -335,6 +335,6 @@ README 面向安装和理解 Skill 的人；[SKILL.md](SKILL.md) 面向执行任
 
 ### 如何反馈问题？
 
-通过 [Issues](https://github.com/XIIRUAN/coding-agent-lean-review/issues) 提供最小可分享的示例：
+通过 [Issues](https://github.com/XIIRUAN/code-trim/issues) 提供最小可分享的示例：
 当前需求、改动范围、错误精简或过度保留的表现，以及能说明问题的验证结果。
 改进应围绕真实失败案例，保持“快速精简 + 按需消融”的核心边界。

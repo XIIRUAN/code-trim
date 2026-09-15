@@ -1,4 +1,4 @@
-# Coding Agent Lean Review
+# Code Trim
 
 [中文](README.md) | English
 
@@ -12,8 +12,8 @@ The repository contains one skill with two working modes and shared protection b
 
 | Skill / mode | Use it for | Main output |
 | --- | --- | --- |
-| `coding-agent-lean-review` · Quick simplification | Reviewing newly added or modified code for clear redundancy | Evidence-backed simplifications and validation notes in the normal task response |
-| `coding-agent-lean-review` · Targeted ablation | Investigating a complex defensive unit whose necessity is unclear | One isolated experiment; retain supported simplifications and restore failed or inconclusive changes |
+| `code-trim` · Quick simplification | Reviewing newly added or modified code for clear redundancy | Evidence-backed simplifications and validation notes in the normal task response |
+| `code-trim` · Targeted ablation | Investigating a complex defensive unit whose necessity is unclear | One isolated experiment; retain supported simplifications and restore failed or inconclusive changes |
 
 Install once to use both modes. Start with quick inspection and enter ablation only when its conditions apply.
 If no clear candidate exists, or uncertainty does not justify more investigation, preserve the implementation and finish.
@@ -35,7 +35,7 @@ If no clear candidate exists, or uncertainty does not justify more investigation
 
 ```text
 Code added or modified in the current task
-  └─ coding-agent-lean-review
+  └─ code-trim
        ├─ Reuse context, diffs, and validation results
        ├─ Make one quick pass
        │    ├─ Duplicate validation and overlapping protections
@@ -64,13 +64,13 @@ Combined changes must leave at least one effective layer for every required guar
 
 - Root [SKILL.md](SKILL.md) is the source of execution rules and retains the English instructions.
 - [README.md](README.md) and this file provide complete Chinese and English documentation.
-- Use `coding-agent-lean-review` for both the directory and skill name.
+- Use `code-trim` for both the directory and skill name.
 - Documentation examples explain decisions; they do not require an inventory or table in every task.
 - Keep both language versions aligned when changing budgets, validation, or stopping conditions.
 - Add scripts, references, or other resources only when an actual need emerges.
 
 ```text
-coding-agent-lean-review/
+code-trim/
 ├── SKILL.md       # Agent execution rules
 ├── README.md      # Complete Chinese documentation
 └── README.en.md   # Complete English documentation
@@ -125,8 +125,8 @@ Skip the experiment when inspection already answers the question.
 ### Get the repository
 
 ```bash
-git clone https://github.com/XIIRUAN/coding-agent-lean-review.git
-cd coding-agent-lean-review
+git clone https://github.com/XIIRUAN/code-trim.git
+cd code-trim
 ```
 
 The skill has no runtime dependencies. Cloning requires Git.
@@ -141,8 +141,8 @@ macOS / Linux:
 
 ```bash
 mkdir -p "$HOME/.agents/skills"
-git clone https://github.com/XIIRUAN/coding-agent-lean-review.git \
-  "$HOME/.agents/skills/coding-agent-lean-review"
+git clone https://github.com/XIIRUAN/code-trim.git \
+  "$HOME/.agents/skills/code-trim"
 ```
 
 Windows PowerShell:
@@ -150,8 +150,8 @@ Windows PowerShell:
 ```powershell
 $skillRoot = Join-Path $HOME '.agents\skills'
 New-Item -ItemType Directory -Force -Path $skillRoot | Out-Null
-git clone https://github.com/XIIRUAN/coding-agent-lean-review.git `
-  (Join-Path $skillRoot 'coding-agent-lean-review')
+git clone https://github.com/XIIRUAN/code-trim.git `
+  (Join-Path $skillRoot 'code-trim')
 ```
 
 Codex uses `~/.agents/skills/` for user skills and `.agents/skills/` for repository skills.
@@ -159,12 +159,12 @@ See the [official OpenAI Skills documentation](https://learn.chatgpt.com/docs/bu
 
 ### Project-level installation and other hosts
 
-For one project, create `.agents/skills/coding-agent-lean-review/` at the target repository root
+For one project, create `.agents/skills/code-trim/` at the target repository root
 and copy this repository's `SKILL.md` into it.
 Optionally copy the README files for teammates; do not copy this repository's `.git` directory.
 
 Other hosts should use the discovery location and invocation syntax documented by that host.
-The resulting layout should contain `coding-agent-lean-review/SKILL.md`.
+The resulting layout should contain `code-trim/SKILL.md`.
 
 ### Updates and discovery checks
 
@@ -194,7 +194,7 @@ Preserve required error behavior and keep the review within this task.
 Explicit invocation:
 
 ```text
-Use $coding-agent-lean-review on the changes made in this task.
+Use $code-trim on the changes made in this task.
 Reuse existing context and test results. Make one quick simplification pass.
 Stop if there is no clear candidate and include meaningful changes in the normal summary.
 ```
@@ -202,7 +202,7 @@ Stop if there is no clear candidate and include meaningful changes in the normal
 ### Investigate a complex defensive unit
 
 ```text
-Use $coding-agent-lean-review on the retry wrapper added in this task.
+Use $code-trim on the retry wrapper added in this task.
 First determine whether the underlying client already covers the same failures
 and error contract. If inspection cannot resolve this cheaply and the wrapper
 adds meaningful complexity, run one ablation in an isolated local variant.
@@ -214,7 +214,7 @@ and do not operate against production services or real business data.
 
 ```text
 Fix the current parsing error while preserving existing error types and public interfaces.
-Then use $coding-agent-lean-review for one simplification pass.
+Then use $code-trim for one simplification pass.
 Include accepted changes in normal validation and state which checks could not run.
 ```
 
@@ -246,7 +246,7 @@ Use the target repository's established commands rather than treating an example
 ### 3. Invoke the skill
 
 ```text
-Use $coding-agent-lean-review.
+Use $code-trim.
 Scope: the parser changes just completed, plus direct dependencies needed to answer specific questions.
 Reuse this task's validation and add checks only for unresolved regression risks.
 ```
@@ -297,7 +297,7 @@ They are not claims of completed cross-project benchmarks or effectiveness evalu
 
 ## GitHub Pages
 
-The documentation entry point is the [GitHub repository](https://github.com/XIIRUAN/coding-agent-lean-review).
+The documentation entry point is the [GitHub repository](https://github.com/XIIRUAN/code-trim).
 No GitHub Pages site is currently configured, and the skill does not automatically generate or publish review reports.
 
 | Content | Current location / behavior |
@@ -346,6 +346,6 @@ The repository publishes no language coverage matrix or quantified token, time, 
 
 ### How can I report a problem?
 
-Open an [issue](https://github.com/XIIRUAN/coding-agent-lean-review/issues) with a minimal shareable example:
+Open an [issue](https://github.com/XIIRUAN/code-trim/issues) with a minimal shareable example:
 the requirement, changed scope, incorrect removal or unnecessary retention, and relevant validation evidence.
 Improvements should address observed failures while preserving the quick-review and on-demand-ablation boundaries.
