@@ -1,8 +1,8 @@
-# 轻量代码精简 · Coding Agent Lean Review
+# 代码精简化Sklls · Coding Agent Lean Review
 
 中文 | [English](README.en.md)
 
-一个面向 Coding Agent 的代码精简 Skill，用于功能实现或缺陷修复后的轻量审查。
+一个面向 Coding Agent 的代码精简 Skill，用于功能实现或缺陷修复后的轻量审查，会让Coding Agent对新增代码的模块进行消融实验，从而去除不必要的代码模块，减少防御性编程。
 它帮助 Agent 识别重复校验、重叠兜底、无当前用途的抽象，以及掩盖真实错误的处理逻辑，
 在保留必要行为和错误契约的前提下，选择有证据支持的简化。
 
